@@ -1,0 +1,25 @@
+src/pages/TransferPage.tsx
+  5f6201247e4c348a 172
+src/components/Header.tsx
+  5f6201247e4c348a 31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "3c130657772fa9932c3711a00877b84564af3603",
+  "prompts": {
+    "5f6201247e4c348a": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "b3435c35-aefd-488d-b1e4-a58f13f63994",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "hl-factory",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 2,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
