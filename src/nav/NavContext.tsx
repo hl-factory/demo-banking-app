@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 
-export type View = 'accounts' | 'detail' | 'history';
+export type View = 'accounts' | 'detail' | 'history' | 'transfer';
 
 interface NavContextValue {
   view: View;
@@ -14,6 +14,7 @@ interface NavContextValue {
   goToAccounts: () => void;
   goToDetail: (accountId: string) => void;
   goToHistory: () => void;
+  goToTransfer: (accountId?: string) => void;
 }
 
 const NavContext = createContext<NavContextValue | null>(null);
@@ -39,9 +40,15 @@ export function NavProvider({ children }: { children: ReactNode }) {
     window.scrollTo(0, 0);
   }, []);
 
+  const goToTransfer = useCallback((accountId?: string) => {
+    setSelectedAccountId(accountId ?? null);
+    setView('transfer');
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <NavContext.Provider
-      value={{ view, selectedAccountId, goToAccounts, goToDetail, goToHistory }}
+      value={{ view, selectedAccountId, goToAccounts, goToDetail, goToHistory, goToTransfer }}
     >
       {children}
     </NavContext.Provider>

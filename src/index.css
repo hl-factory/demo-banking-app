@@ -408,6 +408,137 @@ body {
   gap: 1rem;
 }
 
+/* Themeable primary action button (demo edit target).
+   Changing --primary-action / --primary-action-hover or overriding
+   .primary-action recolors every primary CTA in the app. */
+.primary-action {
+  background: var(--primary-action);
+  color: var(--primary-action-text);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.primary-action:hover:not(:disabled) {
+  background: var(--primary-action-hover);
+}
+
+.primary-action:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.primary-action:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Transfer page */
+.transfer-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.transfer-page__intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.transfer-page__intro h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.transfer-page__limit {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.transfer-page__limit strong {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.transfer-page__hint {
+  margin: 0;
+}
+
+.transfer-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 480px;
+}
+
+.transfer-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.transfer-form__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.transfer-form__select,
+.transfer-form__input {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+
+.transfer-form__select:focus,
+.transfer-form__input:focus {
+  outline: 2px solid var(--primary-action);
+  outline-offset: 1px;
+  border-color: var(--primary-action);
+}
+
+.transfer-form__available {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.transfer-form__error {
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.25);
+  border-radius: 8px;
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.transfer-form__success {
+  margin: 0;
+  padding: 0.6rem 0.8rem;
+  background: rgba(21, 128, 61, 0.08);
+  border: 1px solid rgba(21, 128, 61, 0.25);
+  border-radius: 8px;
+  color: var(--positive);
+  font-size: 0.9rem;
+}
+
 /* Responsive (mobile) */
 @media (max-width: 600px) {
   .app-main {

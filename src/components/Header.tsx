@@ -1,7 +1,7 @@
 import { useNav } from '../nav/NavContext';
 
 export function Header() {
-  const { goToAccounts, goToHistory, view } = useNav();
+  const { goToAccounts, goToHistory, goToTransfer, view } = useNav();
 
   return (
     <header className="header">
@@ -21,6 +21,14 @@ export function Header() {
           onClick={goToAccounts}
         >
           Accounts
+        </button>
+        <button
+          type="button"
+          className={`header__nav-link${view === 'transfer' ? ' header__nav-link--active' : ''}`}
+          data-testid="nav-transfer"
+          onClick={() => goToTransfer()}
+        >
+          Transfer
         </button>
         <button
           type="button"

@@ -48,3 +48,16 @@ export function parseIsoDate(iso: string): Date | null {
 export function isValidIsoDate(iso: string): boolean {
   return parseIsoDate(iso) !== null;
 }
+
+/**
+ * Today's date as an ISO calendar string (YYYY-MM-DD), computed from the local
+ * timezone. Used for runtime-created transactions (transfers); NOT used for the
+ * deterministic seed data, which is static.
+ */
+export function todayIsoDate(): string {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}

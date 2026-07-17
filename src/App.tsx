@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { AccountsPage } from './pages/AccountsPage';
 import { AccountDetailPage } from './pages/AccountDetailPage';
 import { HistoryPage } from './pages/HistoryPage';
+import { TransferPage } from './pages/TransferPage';
 
 function CurrentView() {
   const { view, selectedAccountId } = useNav();
@@ -14,6 +15,8 @@ function CurrentView() {
       return <AccountDetailPage accountId={selectedAccountId} />;
     case 'history':
       return <HistoryPage />;
+    case 'transfer':
+      return <TransferPage />;
     default:
       return <AccountsPage />;
   }
