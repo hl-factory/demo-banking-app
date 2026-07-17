@@ -168,6 +168,7 @@ export function TransferPage() {
           type="submit"
           className="primary-action"
           data-testid="transfer-submit"
+          title="Send this transfer"
         >
           Send Transfer
         </button>
