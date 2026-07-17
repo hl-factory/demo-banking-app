@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from 'react';
 import type { Transaction } from '../types';
 import { formatCurrency, formatDate } from '../utils/format';
 
@@ -5,10 +6,19 @@ interface TransactionRowProps {
   transaction: Transaction;
   showAccount?: boolean;
   accountName?: string;
+  /**
+   * Optional interactivity. When `onClick` is provided the row's <li> becomes
+   * a keyboard-activable button (role="button", tabIndex=0) so the list keeps
+   * valid semantics — the interactive element IS the list item, never a <div>
+   * nested directly under a <ul>.
+   */
+  onClick?: () => void;
+  onKeyDown?: (e: KeyboardEvent) => void;
 }
 
-export function TransactionRow({ transaction, showAccount, accountName }: TransactionRowProps) {
+export function TransactionRow({ transaction, showAccount, accountName, onClick, onKeyDown }: TransactionRowProps) {
   const isCredit = transaction.amount >= 0;
+  const interactive = typeof onClick === 'function';
 
   return (
     <li
@@ -16,6 +26,10 @@ export function TransactionRow({ transaction, showAccount, accountName }: Transa
       data-testid="transaction-row"
       data-tx-id={transaction.id}
       data-direction={isCredit ? 'credit' : 'debit'}
+      role={interactive ? 'button' : undefined}
+      tabIndex={interactive ? 0 : undefined}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
     >
       <div className="tx-row__main">
         <p className="tx-row__description" data-testid="tx-description">

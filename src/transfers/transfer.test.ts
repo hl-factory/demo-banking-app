@@ -103,6 +103,41 @@ describe('validateTransfer — amount errors (empty/zero/negative/non-numeric)',
   });
 });
 
+describe('validateTransfer — scientific notation / sub-cent amounts are rejected', () => {
+  it('rejects scientific notation that would round to sub-cent (e.g. 1e-3)', () => {
+    const r = validateTransfer(input('a-checking', 'a-savings', '1e-3'), ACCOUNTS);
+    expect(r.ok).toBe(false);
+    if (!r.ok) expect(r.error.length).toBeGreaterThan(0);
+  });
+
+  it('rejects scientific notation with an explicit decimal (e.g. 1.5e-3)', () => {
+    const r = validateTransfer(input('a-checking', 'a-savings', '1.5e-3'), ACCOUNTS);
+    expect(r.ok).toBe(false);
+  });
+
+  it('rejects a large scientific-notation value (e.g. 1e4)', () => {
+    // 1e4 === 10000 which is the limit; but the input form is non-plain-decimal
+    // and must be rejected by strict currency parsing.
+    const r = validateTransfer(input('a-savings', 'a-checking', '1e4'), ACCOUNTS);
+    expect(r.ok).toBe(false);
+  });
+
+  it('never produces a $0.00 (amountCents === 0) transfer for sub-cent input', () => {
+    // The headline defect: 1e-3 parsed to 0.001, toCents rounds to 0, and a
+    // $0.00 transfer was created. The validator must reject before that.
+    const r = validateTransfer(input('a-checking', 'a-savings', '1e-3'), ACCOUNTS);
+    expect(r.ok).toBe(false);
+    if (r.ok) {
+      expect(r.amountCents).toBeGreaterThan(0);
+    }
+  });
+
+  it('rejects a sub-cent plain decimal (0.001) with more than two decimals', () => {
+    const r = validateTransfer(input('a-checking', 'a-savings', '0.001'), ACCOUNTS);
+    expect(r.ok).toBe(false);
+  });
+});
+
 describe('validateTransfer — limit and funds', () => {
   it('rejects an amount exceeding the transfer limit', () => {
     const r = validateTransfer(input('a-savings', 'a-checking', '10000.01'), ACCOUNTS);

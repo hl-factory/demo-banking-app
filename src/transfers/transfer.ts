@@ -62,6 +62,19 @@ export function validateTransfer(
     return { ok: false, error: 'Please enter an amount.' };
   }
 
+  // Strict currency parsing: accept only a plain decimal literal (an optional
+  // leading minus, one or more digits, optionally a dot followed by one or more
+  // digits). This rejects scientific notation (e.g. "1e-3", "1.5e-3", "1e4") and
+  // any other non-plain-decimal form that Number() would otherwise coerce.
+  //
+  // The headline defect: "1e-3" contains no decimal point, so it previously
+  // bypassed the decimal-places check, Number("1e-3") === 0.001 (finite, > 0),
+  // toCents(0.001) rounded to 0, and a $0.00 transfer transaction was created.
+  const PLAIN_DECIMAL = /^-?\d+(\.\d+)?$/;
+  if (!PLAIN_DECIMAL.test(trimmed)) {
+    return { ok: false, error: 'Please enter a valid numeric amount.' };
+  }
+
   // Reject anything that is not a clean numeric literal (e.g. "abc", "1,000",
   // "ten"). Number() is permissive with whitespace and a single trailing/leading
   // sign, which is fine for a number input.
@@ -97,7 +110,15 @@ export function validateTransfer(
     };
   }
 
-  return { ok: true, amountCents: toCents(parsed), amountDollars: fromCents(toCents(parsed)) };
+  const amountCents = toCents(parsed);
+  // Defense in depth: never allow a zero-cent (sub-cent) transfer. Even with
+  // the strict plain-decimal check above, this guarantees no $0.00 transaction
+  // is ever created if a future change lets a sub-cent value slip through.
+  if (amountCents <= 0) {
+    return { ok: false, error: 'Amount must be greater than zero.' };
+  }
+
+  return { ok: true, amountCents, amountDollars: fromCents(amountCents) };
 }
 
 export interface TransferResult {

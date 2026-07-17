@@ -30,27 +30,23 @@ export function HistoryPage() {
         <ul className="tx-list" data-testid="tx-list">
           {transactions.map((tx) => {
             const account = getAccountById(tx.accountId);
+            const navigate = () => {
+              if (account) goToDetail(account.id);
+            };
             return (
-              <div
+              <TransactionRow
                 key={tx.id}
-                role="button"
-                tabIndex={0}
-                className="history-page__row-wrapper"
-                data-testid="history-row-wrapper"
-                onClick={() => account && goToDetail(account.id)}
+                transaction={tx}
+                showAccount
+                accountName={account?.name}
+                onClick={navigate}
                 onKeyDown={(e) => {
-                  if ((e.key === 'Enter' || e.key === ' ') && account) {
+                  if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    goToDetail(account.id);
+                    navigate();
                   }
                 }}
-              >
-                <TransactionRow
-                  transaction={tx}
-                  showAccount
-                  accountName={account?.name}
-                />
-              </div>
+              />
             );
           })}
         </ul>
