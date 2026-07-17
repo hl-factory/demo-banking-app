@@ -169,7 +169,7 @@ export function TransferPage() {
           className="primary-action"
           data-testid="transfer-submit"
         >
-          Send Transfer
+          Send money now
         </button>
       </form>
 

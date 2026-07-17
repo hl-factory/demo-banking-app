@@ -28,7 +28,7 @@ export function Header() {
           data-testid="nav-transfer"
           onClick={() => goToTransfer()}
         >
-          Transfer
+          Move Money
         </button>
         <button
           type="button"
