@@ -1,0 +1,454 @@
+:root {
+  --primary-action: #1d4ed8;
+  --primary-action-hover: #1e40af;
+  --primary-action-text: #ffffff;
+  --bg: #f4f6fb;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --danger: #b91c1c;
+  --credit: #b91c1c;
+  --positive: #15803d;
+  --radius: 12px;
+  --max-width: 1000px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.app-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 1rem;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header__brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.header__nav-link {
+  background: none;
+  border: 1px solid transparent;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.header__nav-link:hover {
+  color: var(--primary-action);
+}
+
+.header__nav-link--active {
+  color: var(--primary-action);
+  border-color: var(--primary-action);
+  font-weight: 600;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--primary-action);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Accounts page */
+.accounts-page__intro,
+.history-page__intro {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.accounts-page__intro h1,
+.history-page__intro h1 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.accounts-page__count,
+.history-page__count {
+  color: var(--muted);
+  margin: 0;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.account-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.account-card:hover {
+  border-color: var(--primary-action);
+  box-shadow: 0 1px 6px rgba(29, 78, 216, 0.08);
+}
+
+.account-card__view {
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.account-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.account-card__type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary-action);
+}
+
+.account-card__number {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.account-card__name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.account-card__balance {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.account-card__balance--credit {
+  color: var(--credit);
+}
+
+.account-card__balance-label {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* Account detail */
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail-page__header {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.detail-page__header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.detail-page__type {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--primary-action);
+}
+
+.detail-page__number {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-page__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.detail-page__balance {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-page__balance--credit {
+  color: var(--credit);
+}
+
+.detail-page__balance-label {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Ledger / transaction list */
+.detail-page__ledger,
+.history-page__ledger {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ledger__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.ledger__title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.ledger__empty {
+  color: var(--muted);
+  margin: 0;
+}
+
+.tx-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.history-page__row-wrapper {
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: background 0.12s ease;
+}
+
+.history-page__row-wrapper:hover {
+  background: rgba(29, 78, 216, 0.04);
+}
+
+.history-page__row-wrapper:focus-visible {
+  outline: 2px solid var(--primary-action);
+  outline-offset: 2px;
+}
+
+.tx-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.7rem 1rem;
+}
+
+.tx-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.tx-row__description {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tx-row__meta {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.tx-row__account {
+  color: var(--primary-action);
+}
+
+.tx-row__right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.tx-row__amount {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 1rem;
+}
+
+.tx-row__amount--credit {
+  color: var(--positive);
+}
+
+.tx-row__amount--debit {
+  color: var(--text);
+}
+
+.tx-row__badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  letter-spacing: 0.03em;
+}
+
+.tx-row__badge--credit {
+  background: rgba(21, 128, 61, 0.12);
+  color: var(--positive);
+}
+
+.tx-row__badge--debit {
+  background: rgba(185, 28, 28, 0.1);
+  color: var(--danger);
+}
+
+/* History page */
+.history-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Responsive (mobile) */
+@media (max-width: 600px) {
+  .app-main {
+    padding: 0.85rem;
+  }
+
+  .header {
+    padding: 0.75rem 0.85rem;
+  }
+
+  .header__brand {
+    font-size: 1.1rem;
+  }
+
+  .header__nav-link {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.9rem;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .account-card__balance,
+  .detail-page__balance {
+    font-size: 1.35rem;
+  }
+
+  .tx-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .tx-row__right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tx-row__description {
+    white-space: normal;
+  }
+}
