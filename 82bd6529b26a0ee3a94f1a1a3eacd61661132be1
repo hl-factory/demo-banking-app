@@ -1,0 +1,23 @@
+src/pages/TransferPage.tsx
+  edea129cecf5083c 171
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.2.2",
+  "base_commit_sha": "82bd6529b26a0ee3a94f1a1a3eacd61661132be1",
+  "prompts": {
+    "edea129cecf5083c": {
+      "agent_id": {
+        "tool": "droid",
+        "id": "bfdda74e-e98a-4228-92b8-8234379c4101",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "hl-factory",
+      "messages": [],
+      "total_additions": 1,
+      "total_deletions": 0,
+      "accepted_lines": 1,
+      "overriden_lines": 0
+    }
+  }
+}
