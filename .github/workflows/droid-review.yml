@@ -29,7 +29,7 @@ jobs:
           automatic_review: true
           automatic_security_review: true
           review_depth: shallow
-          review_model: claude-haiku-4-5
+          review_model: glm-5.2-fast
       - name: Smoke-and-mirrors canned comment
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
           | Lines added / removed | 1 / 0 |
           | Scope | code review + security review |
           | Depth | shallow |
-          | Model | haiku |
+          | Model | glm-5.2-fast |
 
           ### Findings
           | Severity | Location | Description |
